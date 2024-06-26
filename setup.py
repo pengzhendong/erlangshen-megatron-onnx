@@ -22,6 +22,7 @@ setup(
     name="bert-onnx",
     version=open("VERSION", encoding="utf8").read(),
     url="https://github.com/pengzhendong/bert-onnx",
+    install_requires=requirements,
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
