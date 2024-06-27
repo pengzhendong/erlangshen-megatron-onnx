@@ -21,10 +21,12 @@ from modelscope import snapshot_download
 class BertONNX:
     def __init__(
         self,
+        repo_dir=None,
         model_id="pengzhendong/chinese-roberta-wwm-ext-large-onnx",
         providers=["CPUExecutionProvider"],
     ):
-        repo_dir = snapshot_download(model_id)
+        if repo_dir is None:
+            repo_dir = snapshot_download(model_id)
         self.tokenizer = AutoTokenizer.from_pretrained(repo_dir)
         self.session = ort.InferenceSession(
             f"{repo_dir}/model.onnx", providers=providers
