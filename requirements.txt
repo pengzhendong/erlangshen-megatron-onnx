@@ -1,4 +1,4 @@
 modelscope
 onnx
-onnxruntime
+onnxruntime-gpu
 transformers
