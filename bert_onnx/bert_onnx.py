@@ -32,9 +32,10 @@ class BertONNX:
 
     def compute(self, text):
         inputs = self.tokenizer(text, return_tensors="np")
+        tokens = inputs.tokens()
         onnx_inputs = {
             "input_ids": inputs["input_ids"],
             "attention_mask": inputs["attention_mask"],
             "token_type_ids": inputs["token_type_ids"],
         }
-        return self.session.run(None, onnx_inputs)
+        return tokens, self.session.run(None, onnx_inputs)

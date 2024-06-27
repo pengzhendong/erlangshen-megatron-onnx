@@ -21,8 +21,9 @@ from bert_onnx import BertONNX
 @click.argument("text")
 def main(text):
     model = BertONNX()
-    outputs = model.compute(text)
+    tokens, outputs = model.compute(text)
     last_hidden_state, hidden_states, attentions = outputs[0], outputs[1], outputs[2]
+    print(tokens)
     print(hidden_states[-3][0]) # [num_layers, batch_size]
 
 
