@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import numpy as np
 import onnxruntime as ort
-from transformers import AutoTokenizer
 from modelscope import snapshot_download
+from transformers import AutoTokenizer
 
 
 class BertONNX:
@@ -28,9 +27,7 @@ class BertONNX:
         if repo_dir is None:
             repo_dir = snapshot_download(model_id)
         self.tokenizer = AutoTokenizer.from_pretrained(repo_dir)
-        self.session = ort.InferenceSession(
-            f"{repo_dir}/model.onnx", providers=providers
-        )
+        self.session = ort.InferenceSession(f"{repo_dir}/model.onnx", providers=providers)
 
     def compute(self, text):
         inputs = self.tokenizer(text, return_tensors="np")

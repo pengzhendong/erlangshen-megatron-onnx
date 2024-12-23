@@ -22,9 +22,9 @@ from bert_onnx import BertONNX
 def main(text):
     model = BertONNX()
     tokens, outputs = model.compute(text)
-    last_hidden_state, hidden_states, attentions = outputs[0], outputs[1], outputs[2]
+    _, hidden_states, _ = outputs[0], outputs[1], outputs[2]
     print(tokens)
-    print(hidden_states[-3][0]) # [num_layers, batch_size]
+    print(hidden_states[-3][0])  # [num_layers, batch_size]
 
 
 if __name__ == "__main__":

@@ -12,4 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .bert_onnx import *
+from .bert_onnx import BertONNX
+
+__all__ = ["BertONNX"]

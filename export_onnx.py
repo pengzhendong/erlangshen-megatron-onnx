@@ -19,7 +19,7 @@ import torch
 from modelscope import snapshot_download
 from transformers import AutoConfig, AutoModel, AutoTokenizer
 from transformers.modeling_utils import PreTrainedModel
-from transformers.onnx import export, OnnxConfig
+from transformers.onnx import OnnxConfig, export
 
 
 class BertOnnxConfig(OnnxConfig):
@@ -88,9 +88,7 @@ def main():
     onnx_path = Path("onnx/model.onnx")
     if not onnx_path.parent.exists():
         onnx_path.parent.mkdir(parents=True)
-    onnx_inputs, onnx_outputs = export(
-        tokenizer, model, config, config.default_onnx_opset, onnx_path
-    )
+    onnx_inputs, onnx_outputs = export(tokenizer, model, config, config.default_onnx_opset, onnx_path)
 
 
 if __name__ == "__main__":
